@@ -217,7 +217,8 @@ class scraper_class:
             filing_date = ''
         # Loop through all events #
         list_of_application_events = soup.find_all('dd',itemprop='events')
-        priority_date = ''
+        priority_dates = []
+        priorityArtDates = []
         grant_date = ''
         expiration_date = ''
         for app_event in list_of_application_events:
@@ -225,8 +226,8 @@ class scraper_class:
             try:
                 title_info = app_event.find('span',itemprop='type').get_text()
                 timeevent = app_event.find('time',itemprop='date').get_text()
-                if title_info == 'priority':
-                    priority_date = timeevent
+                if title_info in ['priority', 'filed']:
+                    priority_dates.append(timeevent)
                 if title_info == 'granted':
                     grant_date = timeevent
                 if title_info == 'publication' and pub_date=='':
@@ -235,7 +236,12 @@ class scraper_class:
                     expiration_date = timeevent
 
             except:
-                continue 
+                continue
+
+        list_of_priority_arts = soup.find_all('time', itemprop='priorArtDate')
+        for record in list_of_priority_arts:
+            priorityArtDates.append(record.get_text())
+
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
         #             Citations
@@ -291,7 +297,8 @@ class scraper_class:
                 'assignee_name_orig':json.dumps(assignee_name_orig),
                 'assignee_name_current':json.dumps(assignee_name_current),
                 'pub_date':pub_date,
-                'priority_date':priority_date,
+                'priority_dates':json.dumps(priority_dates),
+                'priority_art_dates':json.dumps(priorityArtDates),
                 'grant_date':grant_date,
                 'filing_date':filing_date,
                 'expiration_date': expiration_date,

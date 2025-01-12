@@ -10,7 +10,8 @@ The following elements are always returned by the scraper class:
     assignee_name_current     (json)  : current assignees to patent
     pub_date                  (str)   : publication date
     filing_date               (str)   : filing date
-    priority_date             (str)   : priority date
+    priority_dates            (json)  : list of priority dates
+    priority_art_dates        (json)  : priority art date
     grant_date                (str)   : grant date
     forward_cites_no_family   (json)  : forward citations that are not family-to-family cites
     forward_cites_yes_family  (json)  : forward citations that are family-to-family cites

@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="google_patent_scraper",
-    version="1.0.8",
-    author="Ryan Stevens",
+    version="1.0.10",
+    author="Nikita Paplavsky",
     author_email="ryan.louis.stevens@gmail.com",
     description="A package to scrape patents from 'https://patents.google.com/'",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/rls542/patent_scraper/",
+    url="https://github.com/Darkmotion/google_patent_scraper",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
